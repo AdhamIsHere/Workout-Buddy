@@ -70,6 +70,17 @@ header a {
   color: #333;
 }
 
+#deleteSpan {
+  background-color: rgb(255, 255, 255);
+}
+
+.deleteIcon {
+  margin: 10px;
+  font-size: 20px;
+  color: red;
+  cursor: pointer;
+}
+
 /* new workout form */
 label,
 input {
