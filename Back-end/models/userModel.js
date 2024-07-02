@@ -9,6 +9,31 @@ const userSchema = new Schema({
   password: { type: String, required: true },
 });
 
+// static method to login user
+userSchema.statics.login = async function (email, password) {
+  // validate email and password
+  if (!email || !password) {
+    throw Error("Email and password are required");
+  }
+
+  if (!validator.isEmail(email)) {
+    throw Error("Email is invalid");
+  }
+
+  const user = await this.findOne({ email });
+  if (!user) {
+    throw Error("User not found");
+  }
+
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    throw Error("Invalid credentials");
+  }
+
+  return user;
+};
+
+// static method to signup user
 userSchema.statics.signup = async function (email, password) {
   // validate email and password
   if (!email || !password) {
