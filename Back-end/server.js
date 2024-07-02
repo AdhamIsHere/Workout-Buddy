@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const workoutRoutes = require("./routes/workout");
+const userRoutes = require("./routes/user");
 
 // middleware
 const logger = (req, res, next) => {
@@ -15,6 +16,7 @@ app.use(logger);
 
 // routes
 app.use("/api/workout", workoutRoutes);
+app.use("/api/user", userRoutes);
 
 // database connection
 mongoose
