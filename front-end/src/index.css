@@ -81,6 +81,10 @@ header a {
   cursor: pointer;
 }
 
+.deleteIcon:hover {
+  transform: scale(1.5);
+}
+
 /* new workout form */
 label,
 input {
@@ -104,6 +108,11 @@ form button {
   border-radius: 4px;
   cursor: pointer;
 }
+
+form button:hover {
+  background: #0f8b5d;
+}
+
 div.error {
   padding: 10px;
   background: #ffefef;
