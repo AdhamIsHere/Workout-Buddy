@@ -136,6 +136,26 @@ nav a {
   margin-left: 10px;
 }
 
+nav button {
+  background: #fff;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Poppins";
+  font-size: 1em;
+}
+
+button {
+  transition: color 0.3s, background 0.3s;
+}
+
+nav button:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
 form.signup,
 form.login {
   max-width: 400px;
