@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
+  name: { type: String, required: true },
   password: { type: String, required: true },
 });
 
@@ -34,10 +35,10 @@ userSchema.statics.login = async function (email, password) {
 };
 
 // static method to signup user
-userSchema.statics.signup = async function (email, password) {
+userSchema.statics.signup = async function (email, password, name) {
   // validate email and password
-  if (!email || !password) {
-    throw Error("Email and password are required");
+  if (!email || !password || !name) {
+    throw Error("Email, password and name are required");
   }
 
   if (!validator.isEmail(email)) {
@@ -58,7 +59,7 @@ userSchema.statics.signup = async function (email, password) {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
-  const user = await this.create({ email, password: hashedPassword });
+  const user = await this.create({ email, name, password: hashedPassword });
 
   return user;
 };
