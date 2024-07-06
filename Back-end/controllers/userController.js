@@ -13,7 +13,8 @@ const login = async (req, res) => {
     const user = await User.login(email, password);
     // create token
     const token = generateToken(user._id);
-    res.status(200).json({ email, token });
+    let name = user.name;
+    res.status(200).json({ email, name, token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -29,7 +30,7 @@ const signup = async (req, res) => {
     // create token
     const token = generateToken(user._id);
 
-    res.status(201).json({ email, token });
+    res.status(201).json({ email, name, token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
