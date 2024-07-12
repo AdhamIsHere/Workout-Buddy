@@ -72,6 +72,7 @@ header a {
 
 #deleteSpan {
   background-color: rgb(255, 255, 255);
+  cursor: default;
 }
 
 .deleteIcon {
@@ -79,6 +80,7 @@ header a {
   font-size: 20px;
   color: red;
   cursor: pointer;
+  transition: transform 0.3s;
 }
 
 .deleteIcon:hover {
@@ -150,6 +152,12 @@ nav button {
 
 button {
   transition: color 0.3s, background 0.3s;
+}
+
+/* make button splash white when clicked */
+button:active {
+  background: #10523f !important;
+  color: #fff;
 }
 
 nav button:hover {
