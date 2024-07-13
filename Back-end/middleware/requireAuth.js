@@ -13,10 +13,13 @@ const requireAuth = async (req, res, next) => {
 
   try {
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-    const { id } = decodedToken;
-    console.log("id " + id);
-    console.log("token " + token);
-    req.user = await User.findOne({ _id: id }).select("_id");
+    const { _id } = decodedToken;
+
+    // log decodedToken to see what is returned
+    console.log("decodedToken", decodedToken);
+    console.log("token", token);
+
+    req.user = await User.findById(_id).select("_id");
     next();
   } catch (error) {
     console.log(error);
