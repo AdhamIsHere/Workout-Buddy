@@ -38,11 +38,12 @@ const createNewWorkout = async (req, res) => {
     });
   }
   try {
+    const user_id = req.user._id;
     // adding doc to db
-    const workout = await Workout.create({ title, load, reps });
+    const workout = await Workout.create({ title, load, reps, user_id });
     res.status(200).json(workout);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.status(400).json({ error: err.message, user_id: req.user });
     console.log(err);
   }
 };
