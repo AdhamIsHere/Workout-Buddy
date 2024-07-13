@@ -2,7 +2,9 @@ const { isValidObjectId } = require("mongoose");
 const Workout = require("../models/workoutModel");
 // Get all workouts
 const getAllWorkouts = async (req, res) => {
-  const workouts = await Workout.find().sort({ createdAt: -1 });
+  const workouts = await Workout.find({ user_id: req.user._id }).sort({
+    createdAt: -1,
+  });
   res.status(200).json(workouts);
 };
 // Get single workout
@@ -38,8 +40,7 @@ const createNewWorkout = async (req, res) => {
     });
   }
   try {
-    const user = req.user;
-    const user_id = user._id;
+    const user_id = req.user._id;
     // adding doc to db
     const workout = await Workout.create({ title, load, reps, user_id });
     res.status(200).json(workout);
